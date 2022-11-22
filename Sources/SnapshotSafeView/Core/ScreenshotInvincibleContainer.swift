@@ -20,17 +20,20 @@ final class ScreenshotInvincibleContainer: UITextField {
 
     /// - View, which will be hidden on screenshots and screen recording
     private(set) var content: UIView
+    private(set) var enableUserInteraction: Bool
 
     // MARK: - Initialization
     
-    public init(content: UIView) {
+    public init(content: UIView, enableUserInteraction: Bool) {
         self.content = content
+        self.enableUserInteraction = enableUserInteraction
         super.init(frame: .zero)
         setupInitialState()
     }
     
     public required init?(coder: NSCoder) {
         self.content = UIView()
+        self.enableUserInteraction = true
         super.init(coder: coder)
         setupInitialState()
     }
@@ -77,7 +80,7 @@ final class ScreenshotInvincibleContainer: UITextField {
             return
         }
         view.addSubview(content)
-        view.isUserInteractionEnabled = false
+        view.isUserInteractionEnabled = enableUserInteraction
         content.translatesAutoresizingMaskIntoConstraints = false
         activateLayoutConstraintsOfContent(to: view)
     }

@@ -41,12 +41,14 @@ open class ScreenshotProtectController<Content: UIView>: ScreenshotProtectContro
     /// - View, which will be hidden on screenshots and screen recording
     /// - All operation with UI customization need perform at content
     public var content: Content
+    private var enableUserInteraction: Bool
     
     /// - Container view, all operation with layout need perform at container
-    public lazy var container: ProtectiveContainer = ScreenshotInvincibleContainer(content: content)
+    public lazy var container: ProtectiveContainer = ScreenshotInvincibleContainer(content: content, enableUserInteraction: enableUserInteraction)
     
-    public init(content: Content) {
+    public init(content: Content, enableUserInteraction: Bool = true) {
         self.content = content
+        self.enableUserInteraction = enableUserInteraction;
     }
     
     public func eraseOldAndAddnewContent(_ newContent: Content) {
