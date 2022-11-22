@@ -77,7 +77,7 @@ final class ScreenshotInvincibleContainer: UITextField {
             return
         }
         view.addSubview(content)
-        view.isUserInteractionEnabled = true
+        view.isUserInteractionEnabled = false
         content.translatesAutoresizingMaskIntoConstraints = false
         activateLayoutConstraintsOfContent(to: view)
     }
